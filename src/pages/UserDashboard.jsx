@@ -18,7 +18,9 @@ const UserDashboard = () => {
   return (
     <div>
       {blogs?.map((blog) => (
-        <li>{ blog.title}</li>
+        <div>
+          <h3>{blog.title }</h3>
+        </div>
      ))}
     </div>
   )

@@ -3,24 +3,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const [loginInput, setLoginInput] = useState("");
+  // const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("");
+  // const [errors, setErrors] = useState("");
   const navigate = useNavigate();
 
   const doLogin = (e) => {
     e.preventDefault();
     const userData = JSON.parse(localStorage.getItem("signupData"));
     // console.log(userData);
+
     if (!userData) {
       // alert("No user found. Please SignUp");
       toast.warn("No user found. Please SignUp");
-      setErrors("No user found. Please SignUp");
+      // setErrors("No user found. Please SignUp");
       return;
     }
 
     const foundUser = userData?.find(
-      (user) => user?.email === email && user?.password === password
+      (user) =>
+        (user?.name === loginInput ||
+        user?.email === loginInput) &&
+        user?.password === password
     );
     // console.log(foundUser);
 
@@ -29,7 +34,7 @@ const Login = () => {
       // alert('login success')
       navigate("/");
       // console.log('login success');
-    } else if (email !== userData.email && password !== userData.password) {
+    } else {
       // alert('Invalid email & password')
       toast.warning("invalid email & password");
       // console.log('login failed');
@@ -53,9 +58,9 @@ const Login = () => {
                 Username & email
               </label>
               <input
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                type="email"
+                value={loginInput}
+                onChange={(e) => setLoginInput(e.target.value.trim())}
+                type="text"
                 placeholder="Type your username and email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
@@ -66,7 +71,7 @@ const Login = () => {
               <input
                 type="password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value.trim())}
                 placeholder="Type your password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
@@ -106,10 +111,15 @@ const Login = () => {
           </div>
 
           <div className="mt-6 text-center text-gray-600">
-            <h3>Dont have an account? <span> <Link to="/signup" className="hover:underline text-blue-600">
-              SignUp
-            </Link></span></h3>
-           
+            <h3>
+              Dont have an account?{" "}
+              <span>
+                {" "}
+                <Link to="/signup" className="hover:underline text-blue-600">
+                  SignUp
+                </Link>
+              </span>
+            </h3>
           </div>
         </div>
       </form>

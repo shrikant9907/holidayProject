@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
+    name: '',
     email: "",
     password: "",
     confirmPassword: "",
@@ -29,6 +30,9 @@ const Signup = () => {
 
   const validateForm = () => {
     let newErrors = {};
+    if (!formData.name) {
+      newErrors.name("Name is Required")
+    }
 
     if (!formData.email) {
       newErrors.email = "Email is required";
@@ -66,6 +70,7 @@ const Signup = () => {
 
       // Create a new user object with email, password, and confirmPassword properties
       let newUser = {
+        name: formData.name,
         email: formData.email,
         password: formData.password,
         confirmPassword: formData.confirmPassword,
@@ -82,6 +87,7 @@ const Signup = () => {
       // console.log("Form submitted", newUser);
 
       setFormData({
+        name: "",
         email: "",
         password: "",
         confirmPassword: "",
@@ -117,12 +123,26 @@ const Signup = () => {
 
           <div className="mt-6">
             <div>
+              <label className="block text-sm text-gray-600">Username</label>
+              <input
+                type="name"
+                name="name"
+                onChange={handleChange}
+                value={formData.name.trim()}
+                placeholder="Type your username"
+                className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+              />
+              {errors?.name && (
+                <div className=" text-red-600">{errors.email}</div>
+              )}
+            </div>
+            <div className=" mt-4">
               <label className="block text-sm text-gray-600">Email</label>
               <input
                 type="email"
                 name="email"
                 onChange={handleChange}
-                value={formData.email}
+                value={formData.email.trim()}
                 placeholder="Type your email"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
@@ -148,7 +168,7 @@ const Signup = () => {
                 type="password"
                 name="password"
                 onChange={handleChange}
-                value={formData.password}
+                value={formData.password.trim()}
                 placeholder="Create password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
@@ -165,7 +185,7 @@ const Signup = () => {
                 type="password"
                 name="confirmPassword"
                 onChange={handleChange}
-                value={formData.confirmPassword}
+                value={formData.confirmPassword.trim()}
                 placeholder="Confirm Password"
                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />

@@ -2,7 +2,7 @@
 // import Login from "../Login";
 
 const Home = () => {
-  
+  <h1>hiosdjsjdkj</h1>
 
 
 };

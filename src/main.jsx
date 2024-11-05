@@ -3,11 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import {
+  Navigate,
   Route,
   RouterProvider,
   Routes,
   createBrowserRouter,
   createRoutesFromElements,
+  useNavigate,
 } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -21,8 +23,9 @@ import Login from "./components/Login.jsx";
 import { ToastContainer } from "react-toastify";
 import UserDashboard from "./pages/UserDashboard.jsx";
 import Profile from "./components/Profile.jsx";
-import Signup from "./pages/signup.jsx";
-import PostDetails from "./pages/PostDetails.jsx";
+// import Signup from "./pages/signup.jsx";
+import PostDetails from "./pages/PostDetailsPage.jsx";
+// import { auth } from "./App.jsx";
 
 // const router = createBrowserRouter([
 //   {
@@ -52,27 +55,15 @@ import PostDetails from "./pages/PostDetails.jsx";
 
 // 2nd wway for routing is
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="services" element={<Services />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="forgot" element={<Forgot />} />
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
-      <Route path="user" element={<UserDashboard />} >
-        <Route path="posts/:postId" element={<PostDetails/> } />
-      </Route  >
-      
-    </Route>
-  )
-);
+// console.log(auth)
+
+
+
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ToastContainer />
-    <RouterProvider router={router} />
+    <App/>
   </StrictMode>
 );

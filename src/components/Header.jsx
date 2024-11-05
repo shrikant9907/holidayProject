@@ -1,12 +1,33 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, NavLink, useAsyncError, useNavigate } from "react-router-dom";
 import Login from "./Login";
+import { toast } from "react-toastify";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  // console.log(loggedIn);
+  const navigate = useNavigate();
+  
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('signupData'))
+    setLoggedIn(userData? true : false)
+  }, [])
+  
+
+  const handleAuth = () => {
+    if (loggedIn) {
+      localStorage.removeItem('signupData');
+      toast.success('Logout Successfully')
+    } else {
+      navigate('/login')
+    }
+    
+  }
   return (
     <>
-      <header className="bg-gray-800 text-white">
+      <header className="bg-gray-800 text-white fixed w-full  left-0 top-0 ">
         <div className="container mx-auto flex items-center justify-between p-4">
           {/* Logo */}
           <div className="text-lg font-semibold">
@@ -48,13 +69,14 @@ const Header = () => {
               Contact
             </NavLink>
             <NavLink
+              onClick={handleAuth}
              
               to="/login"
               className={({ isActive }) =>
                 `hover:text-orange-400  ${isActive ? "text-orange-500" : " "}`
               }
             >
-              Login
+              {loggedIn ? 'Logout' : 'Login'}
             </NavLink>
 
            
