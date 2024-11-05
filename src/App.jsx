@@ -23,27 +23,30 @@ import PostDetailsPage from "./pages/PostDetailsPage";
 // console.log(isLoggedIn);
 
 
+const routes = createRoutesFromElements(
+  <Route path="/" element={<Layout />}>
+    <Route index element={<Home />} />
+    <Route path="about" element={<About />} />
+    <Route path="services" element={<Services />} />
+    <Route path="contact" element={<Contact />} />
+    <Route path="forgot" element={<Forgot />} />
+    <Route path="login" element={<Login />} />
+    <Route path="signup" element={<Signup />} />
+    <Route path="user" element={<UserDashboard />} >
+      <Route path="posts/:postId" element={<PostDetailsPage />} />
+    </Route>
+  </Route>
+)
 
 const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="services" element={<Services />} />
-      <Route path="contact" element={<Contact />} />
-      <Route path="forgot" element={<Forgot />} />
-      <Route path="login" element={<Login />} />
-      <Route path="signup" element={<Signup />} />
-      <Route path="user" element={<UserDashboard />} >
-        <Route path="posts/:postId" element={<PostDetailsPage/> } />
-      </Route  >
-      
-    </Route>
-  )
+  routes,
+  { basename: "/holidayProject" }
 );
 
+// Ref https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
+
 const App = () => {
-  return (<RouterProvider router={router}/> );
+  return (<RouterProvider router={router} />);
 };
 
 
