@@ -29,33 +29,28 @@ import ProductPage from "./pages/ProductPage";
 // const isLoggedIn = auth;
 // console.log(isLoggedIn);
 
-const routes = createRoutesFromElements(
-  <Route path="/" element={<Protected Component={Layout} />}>
-    {/* <Route index element={<Protected Component={Home} />} /> */}
-    <Route index='' element={<Home/>} />
-    {/* <Route index element={<Protected>
-        <Home/>
-      </Protected>} /> */}
-    <Route path="about" element={<Protected Component={About} />} />
-    <Route path="services" element={<Protected Component={Services} />} />
-    <Route path="contact" element={<Protected Component={Contact} />} />
-    <Route path="forgot" element={<Forgot />} />
-    <Route path="login" element={<Login />} />
-    <Route path="signup" element={<Signup />} />
-    <Route path="user" element={<Protected Component={UserDashboard} />} />
 
-    <Route path="blogs" element={<ProductPage/>}/>
 
-    {/* <Route path="posts/:postId" element={<BlogDetailsPage />} /> */}
-  </Route>
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />}>
+      <Route index element={<Home />} />
+      <Route path="about" element={<About />} />
+      <Route path="services" element={<Services />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="forgot" element={<Forgot />} />
+      <Route path="login" element={<Login />} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="user" element={<UserDashboard />} >
+        <Route path="posts/:postId" element={<PostDetailsPage/> } />
+      </Route  >
+      
+    </Route>
+  )
 );
 
-
-
-const router = createBrowserRouter(routes, { basename: "/holidayProject" });
-
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (<RouterProvider router={router}/> );
 };
 
 export default App;
