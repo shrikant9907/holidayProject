@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [formData, setFormData] = useState({
-    name: '',
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -31,7 +31,7 @@ const Signup = () => {
   const validateForm = () => {
     let newErrors = {};
     if (!formData.name) {
-      newErrors.name("Name is Required")
+      newErrors.name("Name is Required");
     }
 
     if (!formData.email) {
@@ -57,7 +57,7 @@ const Signup = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => {               // this function is called on submiting the form
     e.preventDefault();
 
     const isValid = validateForm();
@@ -95,7 +95,7 @@ const Signup = () => {
       navigate("/login");
     } else {
       // console.log("Form validation failed");
-      toast.warning('Form validation failed')
+      toast.warning("Form validation failed");
     }
   };
 

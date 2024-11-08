@@ -24,7 +24,7 @@ import { ToastContainer } from "react-toastify";
 import UserDashboard from "./pages/UserDashboard.jsx";
 import Profile from "./components/Profile.jsx";
 // import Signup from "./pages/signup.jsx";
-import PostDetails from "./pages/PostDetailsPage.jsx";
+// import PostDetails from "./pages/PostDetailsPage.jsx";
 // import { auth } from "./App.jsx";
 
 // const router = createBrowserRouter([

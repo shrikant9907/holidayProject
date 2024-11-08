@@ -6,19 +6,25 @@ import { toast } from "react-toastify";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  // console.log(loggedIn);
+  // const [storedData, setStoredData] = useState(null)
+  // console.log(storedData);
   const navigate = useNavigate();
   
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem('signupData'))
-    setLoggedIn(userData? true : false)
+    // console.log(userData);
+    
+    setLoggedIn(userData ? true : false)
+    // setStoredData(userData)
+  // console.log(storedData);
   }, [])
   
 
   const handleAuth = () => {
     if (loggedIn) {
-      localStorage.removeItem('signupData');
+      // setStoredData(null)
+      localStorage.removeItem('signupData')
       toast.success('Logout Successfully')
     } else {
       navigate('/login')

@@ -23,8 +23,7 @@ const Login = () => {
 
     const foundUser = userData?.find(
       (user) =>
-        (user?.name === loginInput ||
-        user?.email === loginInput) &&
+        (user?.name === loginInput || user?.email === loginInput) &&
         user?.password === password
     );
     // console.log(foundUser);
