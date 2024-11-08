@@ -44,8 +44,7 @@ const routes = createRoutesFromElements(
     <Route path="signup" element={<Signup />} />
     <Route path="user" element={<Protected Component={UserDashboard} />} />
 
-<<<<<<< HEAD
-    <Route path="blogs" element={<ProductPage/>}/>
+    <Route path="product" element={<ProductPage/>}/>
 
     {/* <Route path="posts/:postId" element={<BlogDetailsPage />} /> */}
   </Route>
@@ -57,32 +56,6 @@ const router = createBrowserRouter(routes, { basename: "/holidayProject" });
 
 const App = () => {
   return <RouterProvider router={router} />;
-=======
-const routes = createRoutesFromElements(
-  <Route path="/" element={<Layout />}>
-    <Route index element={<Home />} />
-    <Route path="about" element={<About />} />
-    <Route path="services" element={<Services />} />
-    <Route path="contact" element={<Contact />} />
-    <Route path="forgot" element={<Forgot />} />
-    <Route path="login" element={<Login />} />
-    <Route path="signup" element={<Signup />} />
-    <Route path="user" element={<UserDashboard />} >
-      <Route path="posts/:postId" element={<PostDetailsPage />} />
-    </Route>
-  </Route>
-)
-
-const router = createBrowserRouter(
-  routes,
-  { basename: "/holidayProject" }
-);
-
-// Ref https://reactrouter.com/en/main/routers/create-browser-router#createbrowserrouter
-
-const App = () => {
-  return (<RouterProvider router={router} />);
->>>>>>> 8091474c54abee679fcbb95122095449a0db256f
 };
 
 export default App;
